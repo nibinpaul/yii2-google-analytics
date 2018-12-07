@@ -28,8 +28,23 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \nibinpaul\analytics\Analytics::widget(['view_id'=>'ga:*********]); ?>
+<?= \nibinpaul\analytics\Analytics::widget(['analyticsID'=>'ga:*********]); ?>
 ```
+
+
+
+- Required properties
+    - **analyticsID** Google analyticsID.You can get the this value from [this link](https://ga-dev-tools.appspot.com/account-explorer/).
+- Optional properties
+    - **startDate** Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or NdaysAgo where N is a positive integer). Defaut to - 30daysAgo
+    - **endDate** End date for fetching Analytics data. Request can specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or NdaysAgo where N is a positive integer). Defaut to today
+    - **metrics** A list of comma-separated metrics, such as ga:sessions,ga:bounces.Default to ga:sessions.
+    - **dimensions**  	A list of comma-separated dimensions for your Analytics data, such as ga:browser,ga:city. Default to ga:browser
+    - **container_id** The div id to be generated default to analayticsData.Add if uses more than one widget.
+    - **extraFields** The extra fields as array which are specified in [this link](https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_summary)
+    - **chartType** (string)The type of chart to be dispalay. The values may be LINE,BAR,TABLE etc..
+
+
 Google Authentication
 ---------------------
 Google Authentication is Required to recive the data.
@@ -48,14 +63,3 @@ Put the file in @app/assets/certificate/service-account-credentials.json(rename 
 
 Add the mailId of Service Account (we just created) into user 
 Give ServiceAccount Access to the Analytics.(Add new user with Service-account-ID with Read & Analyze permissions)
-
-- Required properties
-    - **view_id** Google analyticsID yoy can get the this value from [this link](https://ga-dev-tools.appspot.com/account-explorer/).
-- Optional properties
-    - **startDate** Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or NdaysAgo where N is a positive integer). Defaut to - 30daysAgo
-    - **endDate** End date for fetching Analytics data. Request can specify an end date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or NdaysAgo where N is a positive integer). Defaut to today
-    - **metrics** A list of comma-separated metrics, such as ga:sessions,ga:bounces.Default to ga:sessions.
-    - **dimensions**  	A list of comma-separated dimensions for your Analytics data, such as ga:browser,ga:city. Default to ga:browser
-    - **container_id** The div id to be generated default to analayticsData.Add if uses more than one widget.
-    - **extraFields** The extra fields as array which are specified in [this link](https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_summary)
-    - **chartType** (string)The type of chart to be dispalay. The values may be LINE,BAR,TABLE etc..

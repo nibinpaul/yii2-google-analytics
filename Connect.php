@@ -8,7 +8,7 @@ use yii;
  */
 class Connect extends \yii\base\Action {
 
-    public $connection = null,$jsonPath='@backend/assets/certificate/service-account-credentials.json';
+    public $connection = null,$jsonPath='@app/assets/certificate/service-account-credentials.json';
     public $accessToken;
     public function __construct() {
         parent::init();

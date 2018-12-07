@@ -16,9 +16,9 @@ class Analytics extends \yii\base\Widget {
     public $dimensions = 'ga:browser';
     public $container_id = 'analayticsData';
 //    public $sort=false,$filters=false;
-    public $options = [];
+    public $extraFields = [];
     public $chartType = 'LINE';
-    public $view_id;
+    public $analyticsID;
     public $accesstoken;
 
     const SESSIONS = 'sessions';
@@ -39,10 +39,10 @@ class Analytics extends \yii\base\Widget {
         // Set default values
         // @todo Find a better way to do this
         if (!isset($this->startDate)) {
-            $this->startDate = date('Y-m-d', strtotime('-1 month'));
+            $this->startDate = '30daysAgo';
         }
         if (!isset($this->endDate)) {
-            $this->endDate = date('Y-m-d');
+            $this->endDate = 'today';
         }
     }
 
@@ -60,8 +60,8 @@ class Analytics extends \yii\base\Widget {
         $show = Html::tag('div', '', ['id' => $this->container_id]);
         $chartvar = 'chart' . mt_rand(111111, 999999999);
         $additionalParams = [];
-        if (!empty($this->options)) {
-            foreach ($this->options as $key => $option) {
+        if (!empty($this->extraFields)) {
+            foreach ($this->extraFields as $key => $option) {
                 $additionalParams[] = "'" . $key . "':'" . $option . "'";
             }
         }
@@ -74,7 +74,7 @@ gapi.analytics.auth.authorize({
   });
   var " . $chartvar . " = new gapi.analytics.googleCharts.DataChart({
     query: {
-      'ids': '" . $this->view_id . "', // <-- Replace with the ids value for your view.
+      'ids': '" . $this->analyticsID . "', // <-- Replace with the ids value for your view.
       'start-date': '" . $this->startDate . "',
       'end-date': '" . $this->endDate . "',
       'metrics': '" . $this->metrics . "',
