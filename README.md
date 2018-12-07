@@ -1,6 +1,6 @@
 Google Analytics
 ================
-Show google analaytics data in your Dashboard
+Show google analaytics data chart in your dashboard using [Google Analytics Embeded API](https://developers.google.com/analytics/devguides/reporting/embed/v1/).
 
 Installation
 ------------
